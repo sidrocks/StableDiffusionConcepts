@@ -88,12 +88,13 @@ Use this tab to see how a single prompt manifests across different artistic inte
 
 ## Demo
 https://huggingface.co/spaces/sidharthg/SDConcepts
-![Uploading image.png…]()
+<img width="1915" height="1027" alt="Screenshot 2025-12-23 215106" src="https://github.com/user-attachments/assets/b4779b83-2e35-4ab0-a9bd-7e732eadbb83" />
 
 
 ## 📜 Credits
 *   **Model**: Stable Diffusion v1-4
 *   **Concepts**: 🤗 Hugging Face [SD Concepts Library](https://huggingface.co/sd-concepts-library)
 *   **Implementation**: Custom Triple-Loss Guidance Suite.
+
 
 
