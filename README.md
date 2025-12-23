@@ -22,7 +22,7 @@ Instead of retraining the entire Stable Diffusion model, we use **Textual Invers
     *   **Indian Watercolor**: Expressive portraits.
     *   **Chucky & Anime Boy**: Character-specific styles.
 
-### 2. Guided Sampling (Artistic Steering)
+### 2. Guided Sampling (Artistic Steering) (Loss Function)
 While standard sampling follows the prompt, our **Guided Sampling** implementation injects extra gradients during the diffusion process to maximize specific visual features:
 
 | Guidance Type | Technical Implementation | Artistic Effect |
@@ -95,6 +95,7 @@ https://huggingface.co/spaces/sidharthg/SDConcepts
 *   **Model**: Stable Diffusion v1-4
 *   **Concepts**: 🤗 Hugging Face [SD Concepts Library](https://huggingface.co/sd-concepts-library)
 *   **Implementation**: Custom Triple-Loss Guidance Suite.
+
 
 
 
