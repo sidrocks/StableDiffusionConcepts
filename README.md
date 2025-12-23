@@ -88,9 +88,12 @@ Use this tab to see how a single prompt manifests across different artistic inte
 
 ## Demo
 https://huggingface.co/spaces/sidharthg/SDConcepts
+![Uploading image.png…]()
+
 
 ## 📜 Credits
 *   **Model**: Stable Diffusion v1-4
 *   **Concepts**: 🤗 Hugging Face [SD Concepts Library](https://huggingface.co/sd-concepts-library)
 *   **Implementation**: Custom Triple-Loss Guidance Suite.
+
 
