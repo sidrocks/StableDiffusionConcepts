@@ -1,15 +1,3 @@
----
-title: Stable Diffusion Style Explorer
-emoji: 🎨
-colorFrom: purple
-colorTo: pink
-sdk: gradio
-sdk_version: 6.0.0
-app_file: app.py
-pinned: false
-license: mit
----
-
 # 🎨 Stable Diffusion Guided Style Explorer
 
 This project demonstrates the power of **Textual Inversion** combined with **Artistic Guided Sampling** to steer Stable Diffusion v1-4 towards specific artistic styles and visual attributes.
@@ -18,7 +6,7 @@ This project demonstrates the power of **Textual Inversion** combined with **Art
 
 The project consists of two main components:
 1.  **Jupyter Notebook (`SD_conceptualizer_inference.ipynb`)**: A research-focused environment for experimenting with loss-based guidance and exploring the mechanics of Textual Inversion.
-2.  **Gradio Web App (`app.py`)**: A user-friendly interface for generating images with real-time control over artistic guidance.
+2.  **Gradio Web App (`hf_app/app.py`)**: A user-friendly interface for generating images with real-time control over artistic guidance.
 
 ---
 
@@ -98,7 +86,11 @@ Use this tab to see how a single prompt manifests across different artistic inte
 *   **Prompting**: Keep prompts relatively simple to let the Textual Inversion style shine.
 *   **Seeds**: If you find an image layout you like, keep the seed fixed while adjusting the loss sliders to see exactly how the guidance "sculpts" that specific composition.
 
+## Demo
+https://huggingface.co/spaces/sidharthg/SDConcepts
+
 ## 📜 Credits
 *   **Model**: Stable Diffusion v1-4
 *   **Concepts**: 🤗 Hugging Face [SD Concepts Library](https://huggingface.co/sd-concepts-library)
 *   **Implementation**: Custom Triple-Loss Guidance Suite.
+
