@@ -1,0 +1,9 @@
+gradio>=5.11.0
+torch
+torchvision
+diffusers
+transformers
+accelerate
+huggingface-hub>=0.34.0,<1.0
+Pillow
+safetensors
