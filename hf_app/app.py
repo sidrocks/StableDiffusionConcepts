@@ -185,26 +185,37 @@ def initialize_pipeline():
     return pipe
 
 def load_style(style_name):
-    """Load a textual inversion style"""
+    """Load a textual inversion style idempotently"""
     global current_style, pipe
     
     if pipe is None:
         initialize_pipeline()
     
-    if style_name != current_style:
-        style_config = STYLES[style_name]
-        print(f"Loading style: {style_name}")
+    style_config = STYLES[style_name]
+    token = style_config["token"]
+    
+    # Check if the token is already in the tokenizer to avoid ValueError
+    if token not in pipe.tokenizer.get_vocab():
+        print(f"Loading style: {style_name} with token {token}")
         device = "cuda" if torch.cuda.is_available() else "cpu"
         
-        # Load the inversion
-        pipe.load_textual_inversion(style_config["repo"])
-        
-        # Crucial: move back to device as load_textual_inversion 
-        # can sometimes mess with device placement of embeddings
-        pipe.to(device)
-        
-        current_style = style_name
-        print(f"Style loaded and verified on {device}")
+        try:
+            # Load the inversion
+            pipe.load_textual_inversion(style_config["repo"])
+            # Crucial: move back to device as load_textual_inversion 
+            # can sometimes mess with device placement of embeddings
+            pipe.to(device)
+            print(f"Style {style_name} loaded successfully")
+        except Exception as e:
+            print(f"Error loading style {style_name}: {e}")
+            if "already in tokenizer vocabulary" in str(e):
+                print(f"Token {token} already exists, skipping load.")
+            else:
+                raise e
+    else:
+        print(f"Style {style_name} (token {token}) already in tokenizer, skipping load.")
+    
+    current_style = style_name
 
 def generate_image(prompt, style_name, seed, num_inference_steps, guidance_scale, contrast_scale, complexity_scale, vibrancy_scale, num_images=3):
     """Generate multiple images with the selected style"""
@@ -537,13 +548,13 @@ with gr.Blocks(title="Stable Diffusion Style Explorer") as demo:
         gr.Markdown(f"**{style_name}**: {config['description']} | Token: `{config['token']}` | Default Seed: `{config['default_seed']}`")
 
 # Initialize pipeline on startup
-#initialize_pipeline()
+initialize_pipeline()
 
+# Enable queue for long-running Stable Diffusion tasks (Required for Spaces)
+demo.queue()
 
-
+# Launch the app
 if __name__ == "__main__":
     print("RUNNING THIS FILE:", __file__)
-    demo.launch(server_name="0.0.0.0", server_port=7860,theme=gr.themes.Soft(), share=True)
-    
-    #demo.launch()
+    demo.launch(server_name="0.0.0.0", server_port=7860, theme=gr.themes.Soft())
 
