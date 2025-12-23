@@ -1,0 +1,12 @@
+# Simplified requirements for local testing
+# Install these in order to avoid conflicts
+
+gradio
+torch
+torchvision  
+diffusers
+transformers
+accelerate
+huggingface_hub
+Pillow
+safetensors
